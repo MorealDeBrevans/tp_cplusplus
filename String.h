@@ -7,9 +7,16 @@ class String {
 		//Modificateurs
 		
 		//Méthodes
+		~String();
+
+		size_t capacity();
 		
+		bool empty();
+		
+		friend operator=(String s1, char* s2);
 	protected:
 		//Attributs
 		int length_;
-		char* tab;
+		char* tab_;
+		int capacity_;
 };
