@@ -1,6 +1,8 @@
 class String {
 	public:
 		//Constructeurs
+		String (String copy); //constructeur par copie
+		
 		
 		//Accesseurs
 		
