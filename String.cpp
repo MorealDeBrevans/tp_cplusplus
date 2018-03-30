@@ -1,6 +1,6 @@
 #include "String.h"
 
-String::String(char* s){ 
+String::String(char* s){ //constructeur c-string
 	int i=0; 
 	this->reserve(25);
 	while(s[i]!='\0') { 
@@ -15,5 +15,21 @@ String::String(char* s){
 		}
 	}
 	s[i]='\0';
+}
+
+//Constructeurs
+
+String::String (String copy){ //constructeur par copie
+  self.tab=copy.tab;
+  self.length_=copy.length_;
+} 
+
+//méthode
+int String::length() {  
+	int i=0;
+	while(this->tab[i]!='\0') { 
+		i++
+	}
+	return i;
 }
 
