@@ -1,5 +1,6 @@
 #include "String.h"
 
+//Constructeurs
 String::String(char* s){ //constructeur c-string
 	int i=0; 
 	this->reserve(25);
@@ -17,14 +18,28 @@ String::String(char* s){ //constructeur c-string
 	s[i]='\0';
 }
 
-//Constructeurs
-
 String::String (String copy){ //constructeur par copie
   self.tab_=copy.tab_;
   self.length_=copy.length_;
-} 
+}
 
-//méthode
+//Accesseurs
+unsigned long String::capacity() {
+	return capacity_;
+}
+
+//Modificateurs
+void String::reserve(int n) {
+	this->tab_=realloc(this->tab_, n*sizeof(char));
+	this->capacity_=n;
+}
+
+//Méthodes
+bool String::empty() {
+	if (this->length_==0) return true;
+	else return false;
+}
+
 int String::length() {  
 	int i=0;
 	while(this->tab_[i]!='\0') { 
@@ -33,6 +48,21 @@ int String::length() {
 	return i;
 }
 
+
 int String::max_Size() { 
 	return 5000000;
 }
+
+//Opérateurs
+void String::operator=(char* s2) {
+	String s(s2);
+	this = &s;
+}
+
+friend String operator+(String s1, String s2) {
+	String s = s1+s2.c_str());
+	return s;
+}
+
+//Suppresseur
+String::~String() { }
