@@ -2,8 +2,7 @@
 	
 String::~String() { }
 
-<<<<<<< HEAD
-size_t String::capacity() {
+int String::capacity() {
 	return capacity_;
 }
 
@@ -16,12 +15,20 @@ void String::reserve(int n) {
 	this->tab_=realloc(this->tab_, n*sizeof(char));
 	this->capacity_=n;
 }
-
-friend String operator=(String s1, char* s2) {
-	String s1(s2);
-	
-	return s1;
+friend void swap(String& s1, String& s2) {
+	using std::swap;
+	swap(s1.length_, s2.length);
+	swap(s1.tab_, s2.tab_);
+	swap(s1.capacity_, s2.capacity_);
 }
 
-#friend String operator+(String s1, String s2) {
+void String::operator=(char* s2) {
+	String s(s2);
+	this = &s;
+}
+
+friend String operator+(String s1, String s2) {
+	String s = s1+s2.c_str());
+	return s;
+}
 
