@@ -1,6 +1,7 @@
 class String {
 	public:
 		//Constructeurs
+		String(char* s); //constructeur à partir de c-string
 		
 		//Accesseurs
 		
