@@ -7,7 +7,8 @@ class String {
 		
 		//Modificateurs
 		
-		//Méthodes
+		//Méthodes 
+		
 		
 	protected:
 		//Attributs
