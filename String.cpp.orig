@@ -1,6 +1,5 @@
 #include "String.h"
 
-//Constructeurs
 String::String(char* s){ //constructeur c-string
 	int i=0; 
 	this->reserve(25);
@@ -18,11 +17,9 @@ String::String(char* s){ //constructeur c-string
 	s[i]='\0';
 }
 
-String::String (String copy){ //constructeur par copie
-  self.tab_=copy.tab_;
-  self.length_=copy.length_;
-}
+//Constructeurs
 
+<<<<<<< HEAD
 //Accesseurs
 unsigned long String::capacity() {
 	return capacity_;
@@ -40,14 +37,6 @@ bool String::empty() {
 	else return false;
 }
 
-int String::length() {  
-	int i=0;
-	while(this->tab_[i]!='\0') { 
-		i++
-	}
-	return i;
-}
-
 //Opérateurs
 void String::operator=(char* s2) {
 	String s(s2);
@@ -61,3 +50,19 @@ friend String operator+(String s1, String s2) {
 
 //Suppresseur
 String::~String() { }
+=======
+String::String (String copy){ //constructeur par copie
+  self.tab_=copy.tab_;
+  self.length_=copy.length_;
+} 
+
+//méthode
+int String::length() {  
+	int i=0;
+	while(this->tab_[i]!='\0') { 
+		i++
+	}
+	return i;
+}
+
+>>>>>>> 08eedcafbe5fc27ab69edd29a5b0f1d8597dec89
