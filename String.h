@@ -11,6 +11,7 @@ class String {
 		
 		//Méthodes 
 		int length();
+		int max_Size();
 		
 	protected:
 		//Attributs

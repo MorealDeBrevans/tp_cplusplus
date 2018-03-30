@@ -33,3 +33,6 @@ int String::length() {
 	return i;
 }
 
+int String::max_Size() { 
+	return 5000000;
+}
