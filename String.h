@@ -3,17 +3,21 @@ class String {
 		//Constructeurs
 		
 		//Accesseurs
+		unsigned long capacity();
 		
 		//Modificateurs
+		void reserve(int n);
 		
 		//Méthodes
-		~String();
-
-		size_t capacity();
-		
 		bool empty();
 		
-		friend operator=(String s1, char* s2);
+		//Opérateurs
+		void operator=(char* s2);
+		friend operator+(String s1, String s2);
+				
+		//Suppresseur
+		~String();
+
 	protected:
 		//Attributs
 		int length_;
