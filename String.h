@@ -15,5 +15,5 @@ class String {
 	protected:
 		//Attributs
 		int length_;
-		char* tab;
+		char* tab_;
 };

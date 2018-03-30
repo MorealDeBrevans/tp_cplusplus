@@ -6,11 +6,11 @@ String::String(char* s){ //constructeur c-string
 	while(s[i]!='\0') { 
 		if(i>25) { 
 			this->reserve(i);
-			tab[i]=s[i];
+			tab_[i]=s[i];
 			i++;
 		} 
 		else { 
-			tab[i]=s[i];
+			tab_[i]=s[i];
 			i++;
 		}
 	}
@@ -20,14 +20,14 @@ String::String(char* s){ //constructeur c-string
 //Constructeurs
 
 String::String (String copy){ //constructeur par copie
-  self.tab=copy.tab;
+  self.tab_=copy.tab_;
   self.length_=copy.length_;
 } 
 
 //méthode
 int String::length() {  
 	int i=0;
-	while(this->tab[i]!='\0') { 
+	while(this->tab_[i]!='\0') { 
 		i++
 	}
 	return i;
