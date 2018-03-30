@@ -2,6 +2,7 @@
 	
 String::~String() { }
 
+<<<<<<< HEAD
 size_t String::capacity() {
 	return capacity_;
 }
@@ -11,16 +12,16 @@ bool String::empty() {
 	else return false;
 }
 
-void String::reserve(size_t n) {
+void String::reserve(int n) {
 	this->tab_=realloc(this->tab_, n*sizeof(char));
 	this->capacity_=n;
 }
 
-friend operator=(String s1, char* s2) {
+friend String operator=(String s1, char* s2) {
 	String s1(s2);
 	
 	return s1;
 }
 
-friend operator+(String s1, String s2) {
-	
+#friend String operator+(String s1, String s2) {
+
