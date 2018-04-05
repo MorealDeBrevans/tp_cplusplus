@@ -1,15 +1,18 @@
 #include "String.h"
 #include <string.h>
 #include<cstdlib>
+#include <iostream>
 
 //Constructeurs
 String::String(const char* s){ //constructeur c-string
 	int i=0;
-	this->reserve(25);
+	length_=0;
+	//this->reserve(25);
+	this->tab_=new char[25];
 	while(s[i]!='\0') {
         if(i<max_size_) {
             if(i>25) {
-                this->reserve(i);
+                this->reserve(i+1);
                 tab_[i]=s[i];
                 i++;
             }
@@ -24,7 +27,8 @@ String::String(const char* s){ //constructeur c-string
 }
 
 String::String (const String& model){ //constructeur par copie
-  this->reserve(model.capacity_);
+  this->capacity_=model.capacity_;
+  this->tab_=new char[capacity_];
   for(int i=0;i<model.length_;i++) {
     this->tab_[i]=model.tab_[i];
   }
@@ -36,7 +40,7 @@ unsigned long String::capacity() {
 	return capacity_;
 }
 
-int String::length() {
+unsigned long String::length() {
 	return length_;
 }
 
@@ -45,8 +49,12 @@ const char* String::c_str() const{
 }
 
 //Modificateurs
-void String::reserve(int n) {
-	this->tab_=(char*) realloc(this->tab_, n*sizeof(char));
+void String::reserve(unsigned long n) {
+	char* temp = new char[n];
+	int i;
+	for(i=0;i<n;i++) temp[i]=tab_[i];
+	delete[] tab_;
+	tab_=temp;
 	this->capacity_=n;
 }
 
@@ -58,20 +66,17 @@ bool String::empty() {
 
 //Opérateurs
 String& String::operator=(const char* s) {
-    delete this;
-	this->reserve(25);
+	unsigned long memory=25;
+	this->reserve(memory);
 	int i;
 	for(i=0;s[i]!='\0';i++) {
+	    if(i==capacity_) {
+	    	memory=memory*2;
+        	this->reserve(memory);
+        }
         if(i<max_size_) {
-            if(i>25) {
-                this->reserve(i);
-                tab_[i]=s[i];
-                i++;
-            }
-            else {
-                tab_[i]=s[i];
-                i++;
-            }
+           tab_[i]=s[i];
+           i++;
         }
 	}
 	tab_[i]='\0';
@@ -80,7 +85,6 @@ String& String::operator=(const char* s) {
 }
 
 String& String::operator=(String s) {
-    delete this;
     *this = s.c_str();
     return *this;
 }
@@ -104,5 +108,5 @@ String operator+(String s1, String s2) {
 
 //Suppresseur
 String::~String() {
-    free(tab_);
+    delete[] tab_;
 }
