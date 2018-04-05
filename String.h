@@ -12,14 +12,16 @@ class String {
 		unsigned long capacity();
 		long max_size();
 
+		unsigned long length();
+		
+                const char* c_str() const;	
+        
 		//Modificateurs
-		void reserve(int n);
-		const char* c_str() const;
+		void reserve(unsigned long n);
 
 		//Méthodes
 		bool empty();
-		int length();
-
+	
 		void resize(int n); 
 		void resize(int n, char c);
 
@@ -32,8 +34,8 @@ class String {
 
 	protected:
 		//Attributs
-		int length_;
+		unsigned long length_;
 		char* tab_;
 		unsigned long capacity_;
-		const static long max_size_=1000000;
+		const static unsigned long max_size_=1000000;
 };

@@ -1,32 +1,31 @@
 #include "String.h"
 #include <string.h>
-#include<cstdlib>
+#include <cstdlib>
+#include <iostream>
 
 //Constructeurs
 String::String(const char* s){ //constructeur c-string
 	int i=0;
 	int memory=25;
-	this->reserve(memory);
+	//this->reserve(memory);
+	tab_=new char[memory];
 	while(s[i]!='\0') {
         if(i<max_size_) {
             if(i>memory) {
-            		memory=2*memory;
+            	memory=2*memory;
                 this->reserve(memory);
-                tab_[i]=s[i];
-                i++;
-            }
-            else {
-                tab_[i]=s[i];
-                i++;
+			}
+            tab_[i]=s[i];
+            i++;
             }
         }
-	}
 	tab_[i]='\0';
 	length_=i;
 }
 
 String::String (const String& model){ //constructeur par copie
-  this->reserve(model.capacity_);
+  this->capacity_=model.capacity_;
+  this->tab_=new char[capacity_];
   for(int i=0;i<model.length_;i++) {
     this->tab_[i]=model.tab_[i];
   }
@@ -38,7 +37,7 @@ unsigned long String::capacity() {
 	return capacity_;
 }
 
-int String::length() {
+unsigned long String::length() {
 	return length_;
 }
 
@@ -50,8 +49,16 @@ long String::max_size() {
 	return max_size_;
 }
 //Modificateurs
-void String::reserve(int n) {
-	this->tab_=(char*) realloc(this->tab_, n*sizeof(char));
+void String::reserve(unsigned long n) {
+	std::cout<<"tableau temp\n";
+	char* temp = new char[n];
+	int i;
+	std::cout<<"recopie\n";
+	for(i=0;i<n-1;i++) temp[i]=tab_[i];
+	std::cout<<"supression\n";
+	delete[] tab_;
+	std::cout <<"reassignation\n";
+	tab_=temp;
 	this->capacity_=n;
 }
 
@@ -95,20 +102,23 @@ void String::resize(int n, char c) {
 
 //Opérateurs
 String& String::operator=(const char* s) {
-    delete this;
-	this->reserve(25);
+	std::cout << "suppression tab\n";
+	delete[] tab_;
+	unsigned long memory=25;
+	std::cout << "reallocation\n";
+	tab_=new char[memory];
+	std::cout<<"succes realloc\n";
+	//this->reserve(memory);
 	int i;
 	for(i=0;s[i]!='\0';i++) {
+	    if(i==capacity_) {
+	    	std::cout<<"agrandissement\n";
+	    	memory=2*memory;
+        	this->reserve(memory);
+        }
         if(i<max_size_) {
-            if(i>25) {
-                this->reserve(i);
-                tab_[i]=s[i];
-                i++;
-            }
-            else {
-                tab_[i]=s[i];
-                i++;
-            }
+           tab_[i]=s[i];
+           i++;
         }
 	}
 	tab_[i]='\0';
@@ -123,7 +133,6 @@ void String::operator=(char* s2) {
 	this = &s;
 
 String& String::operator=(String s) {
-    delete this;
     *this = s.c_str();
     return *this;
 
@@ -152,7 +161,7 @@ String::~String() { }
 >>>>>>> 932e836f68454ed5a6f4c1ad5eabc34eaa75f647
 =======
 String::~String() {
-    free(tab_);
+    delete[] tab_;
 }
 >>>>>>> theophile
 
