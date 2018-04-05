@@ -1,24 +1,37 @@
 #include "String.h"
 #include <string.h>
-#include <cstdlib>
+#include<cstdlib>
 #include <iostream>
 
 //Constructeurs
 String::String(const char* s){ //constructeur c-string
 	int i=0;
+<<<<<<< HEAD
+	length_=0;
+	//this->reserve(25);
+	this->tab_=new char[25];
+	while(s[i]!='\0') {
+        if(i<max_size_) {
+            if(i>25) {
+                this->reserve(i+1);
+=======
 	int memory=25;
-	//this->reserve(memory);
-	tab_=new char[memory];
+	this->reserve(memory);
 	while(s[i]!='\0') {
         if(i<max_size_) {
             if(i>memory) {
-            	memory=2*memory;
+            		memory=2*memory;
                 this->reserve(memory);
-			}
-            tab_[i]=s[i];
-            i++;
+>>>>>>> 3bec5220e4207644b8ba07a16cced2f9bd602539
+                tab_[i]=s[i];
+                i++;
+            }
+            else {
+                tab_[i]=s[i];
+                i++;
             }
         }
+	}
 	tab_[i]='\0';
 	length_=i;
 }
@@ -50,14 +63,10 @@ long String::max_size() {
 }
 //Modificateurs
 void String::reserve(unsigned long n) {
-	std::cout<<"tableau temp\n";
 	char* temp = new char[n];
 	int i;
-	std::cout<<"recopie\n";
-	for(i=0;i<n-1;i++) temp[i]=tab_[i];
-	std::cout<<"supression\n";
+	for(i=0;i<n;i++) temp[i]=tab_[i];
 	delete[] tab_;
-	std::cout <<"reassignation\n";
 	tab_=temp;
 	this->capacity_=n;
 }
@@ -70,18 +79,12 @@ bool String::empty() {
 
 //Opérateurs
 String& String::operator=(const char* s) {
-	std::cout << "suppression tab\n";
-	delete[] tab_;
 	unsigned long memory=25;
-	std::cout << "reallocation\n";
-	tab_=new char[memory];
-	std::cout<<"succes realloc\n";
-	//this->reserve(memory);
+	this->reserve(memory);
 	int i;
 	for(i=0;s[i]!='\0';i++) {
 	    if(i==capacity_) {
-	    	std::cout<<"agrandissement\n";
-	    	memory=2*memory;
+	    	memory=memory*2;
         	this->reserve(memory);
         }
         if(i<max_size_) {
