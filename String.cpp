@@ -5,11 +5,13 @@
 //Constructeurs
 String::String(const char* s){ //constructeur c-string
 	int i=0;
-	this->reserve(25);
+	int memory=25;
+	this->reserve(memory);
 	while(s[i]!='\0') {
         if(i<max_size_) {
-            if(i>25) {
-                this->reserve(i);
+            if(i>memory) {
+            		memory=2*memory;
+                this->reserve(memory);
                 tab_[i]=s[i];
                 i++;
             }
@@ -41,9 +43,12 @@ int String::length() {
 }
 
 const char* String::c_str() const{
-    return tab_;
+  return tab_;
 }
 
+long String::max_size() { 
+	return max_size_;
+}
 //Modificateurs
 void String::reserve(int n) {
 	this->tab_=(char*) realloc(this->tab_, n*sizeof(char));
