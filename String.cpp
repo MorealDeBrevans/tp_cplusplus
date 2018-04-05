@@ -96,7 +96,7 @@ String operator+(String s1, const char* s2) {
     strcpy(cat,s1.c_str());
     strcat(cat,s2);
     String* s = new String(cat);
-    free(cat);
+    delete[] cat;
     return *s;
 }
 
