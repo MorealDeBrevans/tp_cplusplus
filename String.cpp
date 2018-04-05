@@ -13,7 +13,7 @@ String::String(const char* s){ //constructeur c-string
         if(i<max_size_) {
             if(i>memory) {
             	memory=2*memory;
-                this->reserve(memory);
+              this->reserve(memory);
 			}
             tab_[i]=s[i];
             i++;
@@ -89,14 +89,17 @@ void String::resize(int n) {
 }
 
 void String::resize(int n, char c) { 
-	int i =this->length_;
-	if(i>n) { 
-		while(tab_[i]!='\0') { 
+	int tailleinit = this->length_; 
+	int i=tailleinit;
+	this->resize(n);
+	if(n>tailleinit) { 
+		while(i<=n) { 
 			tab_[i]=c;
+			i++;
 		}
+		this->length_=n;
 		tab_[i]='\0';
-	}
-	this->resize(n); 
+	} 
 }
 
 
@@ -127,12 +130,7 @@ String& String::operator=(const char* s) {
 }
 
 
-//Opérateurs
-void String::operator=(char* s2) {
-	String s(s2);
-	this = &s;
-
-String& String::operator=(String s) {
+String& String::operator=(const String s) {
     *this = s.c_str();
     return *this;
 
@@ -153,16 +151,24 @@ String operator+(String s1, char* s2) {
 String operator+(String s1, String s2) {
 	String s = s1+s2.c_str();
 	return s;
+} 
+
+String& String::operator=(const char c) { 
+	this->reserve(1);
+	tab_[0]=c;
+	this->length_=1;
+	return *this;
+}
+
+String operator+(char * c, String s1) {
+	
 }
 
 //Suppresseur
-<<<<<<< HEAD
-String::~String() { }
->>>>>>> 932e836f68454ed5a6f4c1ad5eabc34eaa75f647
-=======
+
 String::~String() {
     delete[] tab_;
 }
->>>>>>> theophile
+
 
 

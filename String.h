@@ -1,6 +1,7 @@
 class String {
     friend String operator+(String s1, char* s2);
     friend String operator+(String s1, String s2);
+    friend String operator+(char * c, String s1);
 
 	public:
 		//Constructeurs
@@ -26,8 +27,9 @@ class String {
 		void resize(int n, char c);
 
 		//Opérateurs
-		String& operator=(const char* s2);
-		String& operator=(const String s);
+		String& operator=(const char* s);
+		String& operator=(const String s); 
+		String& operator=(const char c);
 
 		//Suppresseur
 		~String();
