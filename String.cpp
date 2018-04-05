@@ -13,7 +13,7 @@ String::String(const char* s){ //constructeur c-string
         if(i<max_size_) {
             if(i>memory) {
             	memory=2*memory;
-              this->reserve(memory);
+                this->reserve(memory);
 			}
             tab_[i]=s[i];
             i++;
@@ -53,12 +53,9 @@ void String::reserve(unsigned long n) {
 	std::cout<<"tableau temp\n";
 	char* temp = new char[n];
 	int i;
-	std::cout<<"recopie\n";
-	for(i=0;i<n-1;i++) temp[i]=tab_[i];
-	std::cout<<"supression\n";
-	delete[] tab_;
-	std::cout <<"reassignation\n";
-	tab_=temp;
+	for(i=0;i<n;i++) temp[i]=tab_[i];
+	delete[] this->tab_;
+	this->tab_=temp;
 	this->capacity_=n;
 }
 
@@ -105,51 +102,44 @@ void String::resize(int n, char c) {
 
 //Opérateurs
 String& String::operator=(const char* s) {
-	std::cout << "suppression tab\n";
-	delete[] tab_;
+	delete[] this->tab_;
 	unsigned long memory=25;
-	std::cout << "reallocation\n";
+
 	tab_=new char[memory];
-	std::cout<<"succes realloc\n";
-	//this->reserve(memory);
+	capacity_=25;
 	int i;
 	for(i=0;s[i]!='\0';i++) {
-	    if(i==capacity_) {
-	    	std::cout<<"agrandissement\n";
-	    	memory=2*memory;
-        	this->reserve(memory);
-        }
-        if(i<max_size_) {
-           tab_[i]=s[i];
-           i++;
-        }
+		if(i>memory) {
+			memory=2*memory;
+	    	if(memory<max_size_) this->reserve(memory);
+	    }
+	    tab_[i]=s[i];
 	}
 	tab_[i]='\0';
 	length_=i;
 	return *this;
 }
 
-
-String& String::operator=(const String s) {
+String& String::operator=(String s) {
     *this = s.c_str();
     return *this;
-
 }
 
-String operator+(String s1, char* s2) {
+String operator+(String s1, const char* s2) {
     int i;
     for(i=0;s2[i]!=0;i++) {}
-    char cat[s1.length()+i];
-    //char* cat=(char*) malloc((s1.length()+i));
+    char* cat=new char[s1.length()+i];
+    
     strcpy(cat,s1.c_str());
     strcat(cat,s2);
     String* s = new String(cat);
-    free(cat);
+    delete[] cat;
     return *s;
 }
 
 String operator+(String s1, String s2) {
-	String s = s1+s2.c_str();
+	String s("");
+	s=s1+s2.c_str();
 	return s;
 } 
 
@@ -160,15 +150,19 @@ String& String::operator=(const char c) {
 	return *this;
 }
 
-String operator+(char * c, String s1) {
+String operator+(const char * c, String s1) {
+	int i;
+	for(i=0;c[i]!=0;i++) {}
+	char* cat=new char[s1.length()+i]; 
 	
+	strcpy(cat, c); 
+	strcat(cat, s1.c_str());
+	String* s=new String(cat);
+	delete[] cat; 
+	return *s;
 }
 
 //Suppresseur
-
 String::~String() {
     delete[] tab_;
 }
-
-
-

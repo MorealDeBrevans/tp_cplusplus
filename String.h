@@ -1,7 +1,7 @@
 class String {
-    friend String operator+(String s1, char* s2);
+    friend String operator+(String s1, const char* s2);
     friend String operator+(String s1, String s2);
-    friend String operator+(char * c, String s1);
+    friend String operator+(const char * c, String s1);
 
 	public:
 		//Constructeurs
@@ -31,7 +31,7 @@ class String {
 		String& operator=(const String s); 
 		String& operator=(const char c);
 
-		//Suppresseur
+		//Destructeur
 		~String();
 
 	protected:
