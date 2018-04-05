@@ -12,6 +12,7 @@ class String {
 		//Méthodes 
 		int length();
 		int max_Size();
+		void resize(int n);
 		
 	protected:
 		//Attributs

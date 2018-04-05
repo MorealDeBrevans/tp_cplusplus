@@ -36,3 +36,12 @@ int String::length() {
 int String::max_Size() { 
 	return 5000000;
 }
+
+void String::resize(int n) { 
+	if(n<this->max_Size()) { 
+			if(n<this.length_) { 
+				
+			}
+	
+	}
+}
