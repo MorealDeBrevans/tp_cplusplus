@@ -10,19 +10,19 @@ class String {
 
 		//Accesseurs
 		unsigned long capacity();
+		long max_size();
 
 		unsigned long length();
 		
-        const char* c_str() const;	
+                const char* c_str() const;	
         
 		//Modificateurs
 		void reserve(unsigned long n);
 
 		//Méthodes
 		bool empty();
-
-		//Méthodes
-
+	
+		
 		//Opérateurs
 		String& operator=(const char* s2);
 		String& operator=(const String s);

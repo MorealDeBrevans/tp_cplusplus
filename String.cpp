@@ -6,13 +6,13 @@
 //Constructeurs
 String::String(const char* s){ //constructeur c-string
 	int i=0;
-	length_=0;
-	//this->reserve(25);
-	this->tab_=new char[25];
+	int memory=25;
+	this->reserve(memory);
 	while(s[i]!='\0') {
         if(i<max_size_) {
-            if(i>25) {
-                this->reserve(i+1);
+            if(i>memory) {
+            		memory=2*memory;
+                this->reserve(memory);
                 tab_[i]=s[i];
                 i++;
             }
@@ -45,9 +45,12 @@ unsigned long String::length() {
 }
 
 const char* String::c_str() const{
-    return tab_;
+  return tab_;
 }
 
+long String::max_size() { 
+	return max_size_;
+}
 //Modificateurs
 void String::reserve(unsigned long n) {
 	char* temp = new char[n];

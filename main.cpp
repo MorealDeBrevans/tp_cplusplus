@@ -31,6 +31,5 @@ int main() {
 	std::cout << "Longueur : " << s2.length() << std::endl;
 	std::cout << "Capacité: " << s2.capacity() << std::endl;
 	std::cout << s2.c_str() << std::endl;
-	return 0;
 
 }
