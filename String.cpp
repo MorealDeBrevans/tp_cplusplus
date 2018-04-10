@@ -51,7 +51,6 @@ long String::max_size() {
 }
 //Modificateurs
 void String::reserve(unsigned long n) {
-	std::cout<<"tableau temp\n";
 	char* temp = new char[n];
 	int i;
 	for(i=0;i<n;i++) temp[i]=tab_[i];
