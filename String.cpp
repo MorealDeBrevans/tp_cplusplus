@@ -18,8 +18,8 @@ String::String(const char* s){ //constructeur c-string
 			}
             tab_[i]=s[i];
             i++;
-            }
         }
+    }
 	tab_[i]='\0';
 	length_=i;
 }
