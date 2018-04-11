@@ -132,9 +132,9 @@ String operator+(String s1, const char* s2) {
 
     strcpy(cat,s1.c_str());
     strcat(cat,s2);
-    String* s = new String(cat);
+    String s(cat);
     delete[] cat;
-    return *s;
+    return s;
 }
 
 String operator+(String s1, String s2) {
@@ -157,9 +157,9 @@ String operator+(const char * c, String s1) {
 
 	strcpy(cat, c);
 	strcat(cat, s1.c_str());
-	String* s=new String(cat);
+	String s(cat);
 	delete[] cat;
-	return *s;
+	return s;
 }
 
 //Suppresseur
