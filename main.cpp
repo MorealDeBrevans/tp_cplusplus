@@ -39,6 +39,12 @@ int main() {
 	std::cout << "Longueur : " << s4.length() << std::endl;
 	std::cout << "Capacité: " << s4.capacity() << std::endl;
 	std::cout << s4.c_str() << std::endl;
+	
+	std::cout<< "On teste la fonction clear sur la chaîne s4" << std::endl;
+	std::cout << s4.c_str() << std::endl;
+	std::cout<< "clear" << std::endl;
+	s4.clear();
+  std::cout << s4.c_str() << std::endl;
 
 	s4='f';
 	std::cout << "Longueur : " << s4.length() << std::endl;

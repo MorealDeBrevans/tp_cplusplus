@@ -21,6 +21,7 @@ class String {
         
 		//Modificateurs
 		void reserve(unsigned long n);
+		void clear();
 
 		//Méthodes
 		bool empty();

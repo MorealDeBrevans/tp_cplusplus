@@ -63,6 +63,7 @@ void String::reserve(unsigned long n) {
 	this->capacity_=n;
 }
 
+
 //Méthodes
 bool String::empty() {
 	if (length_==0) return true;
@@ -103,6 +104,10 @@ void String::resize(int n, char c) {
 	}
 }
 
+void String::clear(){
+  this->resize(1);
+  this->tab_[0] = '\0';
+}
 
 //Opérateurs
 String& String::operator=(const char* s) {
