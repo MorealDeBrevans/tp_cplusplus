@@ -42,6 +42,10 @@ unsigned long String::length() {
 	return length_;
 }
 
+unsigned long String::size(){
+  return length_;
+}
+
 const char* String::c_str() const{
   return tab_;
 }

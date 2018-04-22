@@ -15,7 +15,9 @@ class String {
 
 		unsigned long length();
 		
-                const char* c_str() const;	
+		unsigned long size(); //synonym of length, so the same method is used
+		
+    const char* c_str() const;	
         
 		//Modificateurs
 		void reserve(unsigned long n);

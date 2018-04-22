@@ -11,7 +11,8 @@ int main() {
 	std::cout << s2.c_str() << std::endl;
 
 	//Accesseurs
-	std::cout << "Longueur : " << s2.length() << std::endl;
+	std::cout << "Longueur - length : " << s2.length() << std::endl;
+	std::cout << "Longueur - size : " << s2.size() << std::endl;
 	std::cout << "Capacité: " << s2.capacity() << std::endl;
 
 
