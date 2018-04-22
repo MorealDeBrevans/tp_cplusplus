@@ -2,6 +2,8 @@ class String {
     friend String operator+(String s1, const char* s2);
     friend String operator+(String s1, String s2);
     friend String operator+(const char * c, String s1);
+    friend String operator+ (String s1, const char s2);
+		friend String operator+ (const char s2, String s1);
 
 	public:
 		//Constructeurs
@@ -21,13 +23,14 @@ class String {
         
 		//Modificateurs
 		void reserve(unsigned long n);
-		void clear();
+		
 
 		//Méthodes
 		bool empty();
 	
 		void resize(int n); 
 		void resize(int n, char c);
+		void clear();
 
 		//Opérateurs
 		String& operator=(const char* s);

@@ -171,6 +171,18 @@ String operator+(const char * c, String s1) {
 	return s;
 }
 
+String operator+(String s1, const char s2){
+  String s = s1;
+  s.resize(s1.length()+1,s2);
+  return s;
+}
+
+String operator+(const char s2,String s1){
+  String s = s1;
+  s.resize(s1.length()+1,s2);
+  return s;
+}
+
 //Suppresseur
 String::~String() {
     delete[] tab_;

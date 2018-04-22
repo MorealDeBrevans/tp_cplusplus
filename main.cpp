@@ -77,5 +77,15 @@ int main() {
 	std::cout << "Longueur : " << s.length() << std::endl;
 	std::cout << "Capacité: " << s.capacity() << std::endl;
 	std::cout << s.c_str() << std::endl;
-
+  
+  s4 = "string";
+  char caract = 'a';
+  std::cout << "s4 : " << s4.c_str() << " caract : " << caract << std::endl;
+  s = s4+caract;
+  std::cout << "ajout de s4 et un char : " << s.c_str() << std::endl;
+  
+  s = caract+s4;
+  std::cout << "ajout d'un char et s4 : " << s.c_str() << std::endl;
+  
+  
 }
